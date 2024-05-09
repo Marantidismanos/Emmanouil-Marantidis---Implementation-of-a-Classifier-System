@@ -1,12 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
-#include <numeric>
 #include <random>
 #include <map>
+#include <iterator>
+#include <algorithm>
+#include <numeric>
+#include <fstream>
+#include <ctime>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
+
 struct Rule {
 	std::string condition;
 	std::string action;
@@ -69,21 +74,6 @@ void mutate(Rule& rule, double mutationRate, std::mt19937& rng) {
 	//std::cout << "After mutation: Condition=" << rule.condition << ", Action=" << rule.action << std::endl;
 }
 
-/*
-Rule rouletteWheelSelection(const std::vector<Rule>& rules) {
-	double totalStrength = std::accumulate(rules.begin(), rules.end(), 0.0,
-		[](double sum, const Rule& r) { return sum + r.strength; });
-	double value = rnd() * totalStrength;
-	double partialSum = 0.0;
-	for (const auto& rule : rules) {
-		partialSum += rule.strength;
-		if (partialSum >= value) {
-			return rule;
-		}
-	}
-	return rules.back();
-}
-*/
 Rule rouletteWheelSelection(const std::vector<Rule>& rules) {
 	double totalStrength = std::accumulate(rules.begin(), rules.end(), 0.0,
 		[](double sum, const Rule& r) { return sum + r.strength; });
@@ -97,20 +87,7 @@ Rule rouletteWheelSelection(const std::vector<Rule>& rules) {
 	}
 	return rules.back(); // Fallback
 }
-/*
-void multiPointCrossover(Rule& parent1, Rule& parent2) {
-	int point1 = rand() % parent1.condition.size();
-	int point2 = rand() % parent1.condition.size();
-	while (point1 == point2) {
-		point2 = rand() % parent1.condition.size();
-	}
-	if (point1 > point2) std::swap(point1, point2);
 
-	for (int i = point1; i <= point2; ++i) {
-		std::swap(parent1.condition[i], parent2.condition[i]);
-	}
-}
-*/
 
 void multiPointCrossover(Rule& parent1, Rule& parent2) {
 	// Combine condition and action for crossover purposes
@@ -149,18 +126,6 @@ bool check_match(const std::string& input, const Rule& rule) {
 		}
 	}
 	return true;
-}
-double evaluateFitness(const Rule& rule, const std::vector<std::pair<std::string, std::string>>& trainingSet) {
-	int correctPredictions = 0;
-	for (const auto& vs : trainingSet) {
-		if (check_match(vs.first, rule)) {  // Ensure we use the matching function to compare
-			if (rule.action == vs.second) {
-				correctPredictions++;
-			}
-		}
-	}
-	return  static_cast<double>(correctPredictions) / trainingSet.size();
-
 }
 // Function to find elite rules without sorting the entire population
 std::vector<int> findEliteIndices(const std::vector<Rule>& rules, int elitismCount) {
@@ -211,11 +176,14 @@ void geneticAlgorithm(std::vector<Rule>& rules, double mutationRate, int generat
 		parent1.strength = averageStrength;
 		parent2.strength = averageStrength;
 
+		// Print initial strengths after crossover but before mutation
+		//std::cout << "Initial Strengths (Before Mutation) - Parent1: " << parent1.strength << ", Parent2: " << parent2.strength << std::endl;
+
 		// Mutate and re-evaluate fitness based on new genotype
 		mutate(parent1, mutationRate, rng);
 		mutate(parent2, mutationRate, rng);
-		parent1.strength = evaluateFitness(parent1, trainingSet);
-		parent2.strength = evaluateFitness(parent2, trainingSet);
+		// Print strengths after mutation
+		//std::cout << "Strengths After Mutation - Parent1: " << parent1.strength << ", Parent2: " << parent2.strength << std::endl;
 
 		// Add offspring to the new generation
 		newGeneration.push_back(parent1);
@@ -226,8 +194,8 @@ void geneticAlgorithm(std::vector<Rule>& rules, double mutationRate, int generat
 
 	// Replace old generation with new generation
 	rules.swap(newGeneration);
-}
 
+}
 
 void shuffleTrainingSet(std::vector<std::pair<std::string, std::string>>& trainingSet) {
 	static std::mt19937 rng(std::random_device{}());
@@ -250,9 +218,6 @@ Rule generateRuleForSample(const std::string& input, double initialStrength, int
 	return Rule(condition, action, initialStrength);
 }
 
-
-// Add a constant for the maximum number of rules allowed
-//const int MAX_RULES = 100; // Example maximum
 
 // Function to find the index of the least effective rule
 int findIndexOfLeastEffectiveRule(const std::vector<Rule>& rules) {
@@ -315,9 +280,6 @@ bool runBucketBrigade(std::vector<Rule>& rules, std::vector<std::pair<std::strin
 					correctPredictions++;
 				}
 				else {
-					/* double negativeReward = rewardAmount * 0.5;
-					bestRule->strength -= negativeReward;
-					if (bestRule->strength < 0) bestRule->strength = 0;*/
 
 					// Apply negative reward if the prediction is incorrect
 					double negativeReward = bidAmount * negativeRewardFactor; // Calculate negative reward
@@ -388,103 +350,149 @@ std::string predictOutput(const std::vector<Rule>& rules, const std::string& inp
 int main() {
 	srand(static_cast<unsigned>(time(0)));
 
-	// Number of rules
-	int populationSize, maxRules, maxGenerations = 0;
-	std::cout << "Give the Population size: ";
-	std::cin >> populationSize;
-	// Max number of rules 
-	std::cout << "Enter the Maximum number of rules: ";
-	std::cin >> maxRules;
-	// Number of generations
-	std::cout << "Give the number of Generations: ";
-	std::cin >> maxGenerations;
-	// Mutation rate
-	double mutationRate;
-	std::cout << "Give the mutationRate (e.g., 0.5): ";
-	std::cin >> mutationRate;
+	int populationSize = 30, maxRules = 40, maxGenerations = 1000;
+	double mutationRate = 0.12;
+	double bidPercentage = 0.05;
+	double rewardAmount = 2.0;
+	int repeatCount = 15;
+	double taxRate = 0.18;
+	double negativeRewardFactor = 0.6;
+	double strengthThreshold = 18.0;
 
-	// Rule and action lengths
 	int conditionLength = 6;
 	int actionLength = 1;
 
 	std::vector<std::pair<std::string, std::string>> trainingSet = {
-	{"000000", "0"}, {"000001", "0"}, {"000010", "0"}, {"000011", "0"},
-	{"000100", "0"}, {"000101", "0"}, {"000110", "0"}, {"000111", "0"},
-	{"001000", "1"}, {"001001", "1"}, {"001010", "1"}, {"001011", "1"},
-	{"001100", "1"}, {"001101", "1"}, {"001110", "1"}, {"001111", "1"},
+		{"000000", "0"}, {"000001", "0"}, {"000010", "0"}, {"000011", "0"},
+		{"000100", "0"}, {"000101", "0"}, {"000110", "0"}, {"000111", "0"},
+		{"001000", "1"}, {"001001", "1"}, {"001010", "1"}, {"001011", "1"},
+		{"001100", "1"}, {"001101", "1"}, {"001110", "1"}, {"001111", "1"},
 
-	{"010000", "0"}, {"010001", "0"}, {"010010", "0"}, {"010011", "0"},
-	{"010100", "1"}, {"010101", "1"}, {"010110", "1"}, {"010111", "1"},
-	{"011000", "0"}, {"011001", "0"}, {"011010", "0"}, {"011011", "0"},
-	{"011100", "1"}, {"011101", "1"}, {"011110", "1"}, {"011111", "1"},
+		{"010000", "0"}, {"010001", "0"}, {"010010", "0"}, {"010011", "0"},
+		{"010100", "1"}, {"010101", "1"}, {"010110", "1"}, {"010111", "1"},
+		{"011000", "0"}, {"011001", "0"}, {"011010", "0"}, {"011011", "0"},
+		{"011100", "1"}, {"011101", "1"}, {"011110", "1"}, {"011111", "1"},
 
-	{"100000", "0"}, {"100001", "0"}, {"100010", "1"}, {"100011", "1"},
-	{"100100", "0"}, {"100101", "0"}, {"100110", "1"}, {"100111", "1"},
-	{"101000", "0"}, {"101001", "0"}, {"101010", "1"}, {"101011", "1"},
-	{"101100", "0"}, {"101101", "0"}, {"101110", "1"}, {"101111", "1"},
+		{"100000", "0"}, {"100001", "0"}, {"100010", "1"}, {"100011", "1"},
+		{"100100", "0"}, {"100101", "0"}, {"100110", "1"}, {"100111", "1"},
+		{"101000", "0"}, {"101001", "0"}, {"101010", "1"}, {"101011", "1"},
+		{"101100", "0"}, {"101101", "0"}, {"101110", "1"}, {"101111", "1"},
 
-	{"110000", "0"}, {"110001", "1"}, {"110010", "0"}, {"110011", "1"},
-	{"110100", "0"}, {"110101", "1"}, {"110110", "0"}, {"110111", "1"},
-	{"111000", "0"}, {"111001", "1"}, {"111010", "0"}, {"111011", "1"},
-	{"111100", "0"}, {"111101", "1"}, {"111110", "0"}, {"111111", "1"},
+		{"110000", "0"}, {"110001", "1"}, {"110010", "0"}, {"110011", "1"},
+		{"110100", "0"}, {"110101", "1"}, {"110110", "0"}, {"110111", "1"},
+		{"111000", "0"}, {"111001", "1"}, {"111010", "0"}, {"111011", "1"},
+		{"111100", "0"}, {"111101", "1"}, {"111110", "0"}, {"111111", "1"},
 	};
 
-
-	// Initialize the rules.
 	std::vector<Rule> rules;
-	rules.reserve(maxRules);  // Reserve space to optimize memory allocations
+	rules.reserve(maxRules);
 	for (int i = 0; i < populationSize; ++i) {
 		rules.push_back(generateRandomRule(conditionLength, actionLength));
 	}
 
-	for (const auto& rule : rules) {
-		std::cout << "Condition: " << rule.condition << " Action: " << rule.action << " Strength: " << rule.strength << "\n";
+
+	// Prepare to capture accuracies
+
+	std::vector<double> accuracies(10); // To store accuracies from each run
+
+	// Get current time safely with localtime_s on MSVC
+	std::time_t now = std::time(nullptr);
+	std::tm timeStruct = {}; // initialize to zero
+
+	char buffer[80];
+	localtime_s(&timeStruct, &now); // Safely copy time to timeStruct
+	std::strftime(buffer, sizeof(buffer), "%Y-%m-%d_%H-%M-%S", &timeStruct); // Format the time
+	std::string filename = "final_results_" + std::string(buffer) + ".txt";
+
+	// Open text file to write final results
+	// Make sure to open the file only once
+	std::ofstream outFile(filename);
+	if (!outFile.is_open()) {
+		std::cerr << "Failed to open file: " << filename << "\n";
+		return 1;
 	}
 
-	double bidPercentage = 0.05;
-	double rewardAmount = 2.0;
-	int repeatCount = 10;
-	double taxRate = 0.1;
-	double negativeRewardFactor = 0.5; // Factor to determine the negative reward based on the bid amount
+	outFile << "Parameters : \n" << std::endl;
+	outFile << "                   \n" << std::endl;
+	outFile << "populationSize = " << populationSize << "\n" << std::endl;
+	outFile << "maxRules = " << maxRules << "\n" << std::endl;
+	outFile << "maxGenerations = " << maxGenerations << "\n" << std::endl;
+	outFile << "mutationRate = " << mutationRate << "\n" << std::endl;
+	outFile << "bidPercentage = " << bidPercentage << "\n" << std::endl;
+	outFile << "rewardAmount = " << rewardAmount << "\n" << std::endl;
+	outFile << "repeatCount = " << repeatCount << "\n" << std::endl;
+	outFile << "taxRate = " << taxRate << "\n" << std::endl;
+	outFile << "negativeRewardFactor = " << negativeRewardFactor << "\n" << std::endl;
+	outFile << "strengthThreshold = " << strengthThreshold << "\n" << std::endl;
+	outFile << "                   \n" << std::endl;
+	outFile << "Final Rules:\n" << std::endl;
+	outFile << "                   \n" << std::endl;
 
-	for (int gen = 0; gen < maxGenerations; ++gen) {
+	for (int runcounter = 0; runcounter < 10; ++runcounter)
+	{
+		outFile << "Run : " << runcounter << "\n" << std::endl;
+		for (int gen = 0; gen < maxGenerations; ++gen) {
+			runBucketBrigade(rules, trainingSet, bidPercentage, rewardAmount, negativeRewardFactor, repeatCount, taxRate, maxRules);
+			geneticAlgorithm(rules, mutationRate, gen, trainingSet);
+		}
 
-		runBucketBrigade(rules, trainingSet, bidPercentage, rewardAmount, negativeRewardFactor, repeatCount, taxRate, maxRules);
-		geneticAlgorithm(rules, mutationRate, gen, trainingSet);
-		std::cout << "Generation " << gen << ":\n";
+		std::vector<Rule> highStrengthRules;
+
+		std::copy_if(rules.begin(), rules.end(), std::back_inserter(highStrengthRules), [strengthThreshold](const Rule& rule) {
+			return rule.strength > strengthThreshold;
+			});
+
+		int correctPredictions = 0;
+		for (const auto& ts : trainingSet) {
+			if (predictOutput(rules, ts.first) == ts.second) {
+				correctPredictions++;
+			}
+		}
+
+		double accuracy = static_cast<double>(correctPredictions) / trainingSet.size() * 100.0;
+		accuracies[runcounter] = accuracy; // Store accuracy for this run
+
+
+		outFile << "Final High Strength Rules:\n";
+		std::cout << "Final High Strength Rules:\n";
+		for (const auto& rule : highStrengthRules) {
+			outFile << "Condition: " << rule.condition << " Action: " << rule.action << " Strength: " << rule.strength << "\n" << std::endl;
+			std::cout << "Condition: " << rule.condition << " Action: " << rule.action << " Strength: " << rule.strength << "\n";
+		}
+
+
+
+		// Write the final rules
+
+		outFile << "ALL RULES " << "\n" << std::endl;
 		for (int i = 0; i < rules.size(); ++i) {
-			std::cout << i + 1 << ". Condition: " << rules[i].condition
-				<< ", Action: " << rules[i].action
-				<< ", Strength: " << rules[i].strength << "\n";
+			outFile << "Rule " << i + 1 << ": Condition = " << rules[i].condition
+				<< ", Action = " << rules[i].action
+				<< ", Strength = " << rules[i].strength << "\n" << std::endl;
 		}
+		std::cout << "Final Accuracy: " << accuracy << "%\n";
+		// Write the accuracy
+		outFile << "\nFinal Accuracy: " << accuracy << "%\n" << std::endl;
 
-		// Wait for the user to press a key to continue
-		std::cout << "Press ENTER to continue to the next generation...\n";
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
 	}
 
-	// Isolating high-strength rules
-	std::vector<Rule> highStrengthRules;
-	double strengthThreshold = 10.0;
-	std::copy_if(rules.begin(), rules.end(), std::back_inserter(highStrengthRules), [strengthThreshold](const Rule& rule) {
-		return rule.strength > strengthThreshold;
-		});
+	// Compute average and maximum accuracies
+	double averageAccuracy = std::accumulate(accuracies.begin(), accuracies.end(), 0.0) / accuracies.size();
+	double maxAccuracy = *std::max_element(accuracies.begin(), accuracies.end());
+	outFile << "                   \n";
+	outFile << "                   \n";
+	outFile << "Average Accuracy: " << averageAccuracy << "%\n" << std::endl;
+	outFile << "Maximum Accuracy: " << maxAccuracy << "%\n" << std::endl;
 
-	std::cout << "High Strength Rules:\n";
-	for (const auto& rule : highStrengthRules) {
-		std::cout << "Condition: " << rule.condition << " Action: " << rule.action << " Strength: " << rule.strength << "\n";
+	outFile.close();
+	if (outFile.fail()) {
+		std::cerr << "Error occurred during file operation on: " << filename << "\n";
+		return 1;
 	}
-	// Final accuracy calculation
-	int correctPredictions = 0;
-	for (const auto& ts : trainingSet) {
-		if (predictOutput(rules, ts.first) == ts.second) {
-			correctPredictions++;
-		}
-	}
-
-	double accuracy = static_cast<double>(correctPredictions) / trainingSet.size() * 100.0;
-	std::cout << "Accuracy: " << accuracy << "%" << std::endl;
 
 	return 0;
+
+
 }
 
