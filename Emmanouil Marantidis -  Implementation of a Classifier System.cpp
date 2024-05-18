@@ -350,17 +350,17 @@ std::string predictOutput(const std::vector<Rule>& rules, const std::string& inp
 int main() {
 	srand(static_cast<unsigned>(time(0)));
 
-	int populationSize = 30, maxRules = 60, maxGenerations = 12000;
-	double mutationRate = 0.10;
+	int populationSize = 45, maxRules = 60, maxGenerations = 30000;
+	double mutationRate = 0.1;
 	double bidPercentage = 0.05;
-	double rewardAmount = 2.0; // This Parameter gives  Reward to the Rules if they are correct .
+	double rewardAmount = 2.0; // This Parameter gives a Reward to the Rules if they are correct .
 	int repeatCount = 20;
 	double taxRate = 0.10; 
 
-	double negativeRewardFactor = 1.00; // This Parameter gives negative Reward to the Rules if they are not correct .
+	double negativeRewardFactor = 1.25; // This Parameter gives a negative Reward to the Rules if they are not correct .
 										
-	double strengthThreshold = 25; //This is the value that choose wit
-	double elitismRate = 0.2; // To take 10% of the rules size we need to give 0.1 !! !!
+	double strengthThreshold = 25; //This is the value that choose the 
+	double elitismRate = 0.25; // To take 10% of the rules size we need to give 0.1 !! !!
 
 	int conditionLength = 6;
 	int actionLength = 1;
