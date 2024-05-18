@@ -1,0 +1,890 @@
+Parameters : 
+
+                   
+
+populationSize = 20
+
+maxRules = 30
+
+maxGenerations = 1500
+
+mutationRate = 0.12
+
+bidPercentage = 0.05
+
+rewardAmount = 1.5
+
+repeatCount = 20
+
+taxRate = 0.15
+
+negativeRewardFactor = 0.7
+
+strengthThreshold = 19
+
+                   
+
+Final Rules:
+
+                   
+
+Run : 0
+
+Final High Strength Rules:
+Condition: 000### Action: 0 Strength: 19.6811
+
+Condition: 11###1 Action: 1 Strength: 19.6811
+
+Condition: 11###0 Action: 0 Strength: 19.6811
+
+Condition: 01#### Action: 1 Strength: 19.6811
+
+Condition: 1#1##1 Action: 0 Strength: 19.6811
+
+Condition: 001### Action: 1 Strength: 19.6811
+
+Condition: 001### Action: 1 Strength: 19.6811
+
+Condition: 110### Action: 1 Strength: 19.6811
+
+Condition: 01###1 Action: 0 Strength: 19.6811
+
+Condition: 0000## Action: 1 Strength: 19.6811
+
+Condition: 001### Action: 0 Strength: 19.6811
+
+Condition: 001### Action: 1 Strength: 19.6811
+
+Condition: 111#1# Action: 0 Strength: 19.6811
+
+Condition: #1###0 Action: 0 Strength: 19.6811
+
+Condition: 11###0 Action: 1 Strength: 19.6811
+
+ALL RULES 
+
+Rule 1: Condition = 000###, Action = 0, Strength = 19.6811
+
+Rule 2: Condition = 11###1, Action = 1, Strength = 19.6811
+
+Rule 3: Condition = 11###0, Action = 0, Strength = 19.6811
+
+Rule 4: Condition = 0001##, Action = 0, Strength = 13.8481
+
+Rule 5: Condition = 0#1###, Action = 0, Strength = 13.8481
+
+Rule 6: Condition = 01####, Action = 1, Strength = 19.6811
+
+Rule 7: Condition = 1#1##1, Action = 0, Strength = 19.6811
+
+Rule 8: Condition = 010###, Action = 0, Strength = 13.4648
+
+Rule 9: Condition = 010###, Action = 0, Strength = 13.4648
+
+Rule 10: Condition = 001###, Action = 1, Strength = 19.6811
+
+Rule 11: Condition = 001###, Action = 1, Strength = 19.6811
+
+Rule 12: Condition = 0000##, Action = 1, Strength = 10.222
+
+Rule 13: Condition = 000#10, Action = 0, Strength = 10.222
+
+Rule 14: Condition = 110###, Action = 1, Strength = 19.6811
+
+Rule 15: Condition = 01###1, Action = 0, Strength = 19.6811
+
+Rule 16: Condition = 11#1#1, Action = 0, Strength = 10.222
+
+Rule 17: Condition = 01###1, Action = 1, Strength = 10.222
+
+Rule 18: Condition = 0000##, Action = 1, Strength = 19.6811
+
+Rule 19: Condition = 001###, Action = 0, Strength = 19.6811
+
+Rule 20: Condition = 01####, Action = 1, Strength = 14.2215
+
+Rule 21: Condition = 11###1, Action = 1, Strength = 14.2215
+
+Rule 22: Condition = 1#00##, Action = 0, Strength = 14.2215
+
+Rule 23: Condition = 0####0, Action = 1, Strength = 14.2215
+
+Rule 24: Condition = 001###, Action = 1, Strength = 19.6811
+
+Rule 25: Condition = 111#1#, Action = 0, Strength = 19.6811
+
+Rule 26: Condition = 000###, Action = 0, Strength = 13.4648
+
+Rule 27: Condition = 010###, Action = 0, Strength = 13.4648
+
+Rule 28: Condition = #1###0, Action = 0, Strength = 19.6811
+
+Rule 29: Condition = 11###0, Action = 1, Strength = 19.6811
+
+Rule 30: Condition = 01####, Action = 1, Strength = 14.2215
+
+
+Final Accuracy: 45.3125%
+
+Run : 1
+
+Final High Strength Rules:
+Condition: #1#0#0 Action: 0 Strength: 19.6811
+
+Condition: 001### Action: 1 Strength: 19.681
+
+Condition: 10##0# Action: 0 Strength: 19.6097
+
+Condition: 111### Action: 1 Strength: 19.6453
+
+Condition: 0###0# Action: 1 Strength: 19.6453
+
+Condition: 001### Action: 0 Strength: 19.681
+
+Condition: #1#0## Action: 1 Strength: 19.681
+
+Condition: 0110## Action: 1 Strength: 19.681
+
+Condition: 001##0 Action: 0 Strength: 19.681
+
+Condition: 10##0# Action: 0 Strength: 19.6097
+
+Condition: 10##0# Action: 0 Strength: 19.6097
+
+Condition: 00##1# Action: 0 Strength: 19.6453
+
+Condition: 10###0 Action: 1 Strength: 19.6453
+
+Condition: 10##01 Action: 0 Strength: 19.6097
+
+ALL RULES 
+
+Rule 1: Condition = #1#0#0, Action = 0, Strength = 19.6811
+
+Rule 2: Condition = 001###, Action = 1, Strength = 19.681
+
+Rule 3: Condition = 10##0#, Action = 0, Strength = 19.6097
+
+Rule 4: Condition = 111###, Action = 1, Strength = 19.6453
+
+Rule 5: Condition = 0###0#, Action = 1, Strength = 19.6453
+
+Rule 6: Condition = 001###, Action = 0, Strength = 19.681
+
+Rule 7: Condition = #1#0##, Action = 1, Strength = 19.681
+
+Rule 8: Condition = 10###0, Action = 1, Strength = 16.1247
+
+Rule 9: Condition = 011#0#, Action = 0, Strength = 16.1247
+
+Rule 10: Condition = #0#1##, Action = 0, Strength = 5.61909
+
+Rule 11: Condition = 10#1##, Action = 1, Strength = 5.61909
+
+Rule 12: Condition = #0#1##, Action = 0, Strength = 15.1522
+
+Rule 13: Condition = 1#1#0#, Action = 0, Strength = 15.1522
+
+Rule 14: Condition = 00#1##, Action = 0, Strength = 15.1879
+
+Rule 15: Condition = 01#1#0, Action = 0, Strength = 15.1879
+
+Rule 16: Condition = 01#0##, Action = 1, Strength = 11.6673
+
+Rule 17: Condition = #1#1##, Action = 0, Strength = 11.6673
+
+Rule 18: Condition = 1###0#, Action = 1, Strength = 10.1878
+
+Rule 19: Condition = 001###, Action = 0, Strength = 10.1878
+
+Rule 20: Condition = 00####, Action = 1, Strength = 17.9302
+
+Rule 21: Condition = 1#1###, Action = 1, Strength = 17.9302
+
+Rule 22: Condition = 0110##, Action = 1, Strength = 19.681
+
+Rule 23: Condition = 001##0, Action = 0, Strength = 19.681
+
+Rule 24: Condition = 11###0, Action = 0, Strength = 10.0536
+
+Rule 25: Condition = #1#0#0, Action = 0, Strength = 10.0536
+
+Rule 26: Condition = 10##0#, Action = 0, Strength = 19.6097
+
+Rule 27: Condition = 10##0#, Action = 0, Strength = 19.6097
+
+Rule 28: Condition = 00##1#, Action = 0, Strength = 19.6453
+
+Rule 29: Condition = 10###0, Action = 1, Strength = 19.6453
+
+Rule 30: Condition = 10##01, Action = 0, Strength = 19.6097
+
+
+Final Accuracy: 53.125%
+
+Run : 2
+
+Final High Strength Rules:
+Condition: 1###11 Action: 1 Strength: 19.6811
+
+Condition: 0#00## Action: 0 Strength: 19.6811
+
+Condition: 001### Action: 1 Strength: 19.6811
+
+Condition: 001### Action: 1 Strength: 19.6811
+
+Condition: 001### Action: 1 Strength: 19.6811
+
+Condition: 0011## Action: 1 Strength: 19.6811
+
+Condition: 0011## Action: 1 Strength: 19.6811
+
+Condition: 0001#1 Action: 1 Strength: 19.6811
+
+Condition: 0#10## Action: 0 Strength: 19.6811
+
+Condition: 1#1### Action: 1 Strength: 19.6811
+
+Condition: 00##01 Action: 1 Strength: 19.6811
+
+Condition: 1###11 Action: 0 Strength: 19.6811
+
+Condition: 0#00## Action: 1 Strength: 19.6811
+
+Condition: 011### Action: 1 Strength: 19.6811
+
+Condition: #01#1# Action: 1 Strength: 19.6811
+
+Condition: 001#11 Action: 1 Strength: 19.6811
+
+ALL RULES 
+
+Rule 1: Condition = 1###11, Action = 1, Strength = 19.6811
+
+Rule 2: Condition = 0#00##, Action = 0, Strength = 19.6811
+
+Rule 3: Condition = 001###, Action = 1, Strength = 19.6811
+
+Rule 4: Condition = 001###, Action = 1, Strength = 19.6811
+
+Rule 5: Condition = 001###, Action = 1, Strength = 19.6811
+
+Rule 6: Condition = #11#1#, Action = 0, Strength = 11.5699
+
+Rule 7: Condition = 0100##, Action = 0, Strength = 11.5699
+
+Rule 8: Condition = 0011##, Action = 1, Strength = 19.6811
+
+Rule 9: Condition = 0011##, Action = 1, Strength = 19.6811
+
+Rule 10: Condition = 1##011, Action = 1, Strength = 10.222
+
+Rule 11: Condition = 1###01, Action = 1, Strength = 10.222
+
+Rule 12: Condition = 0001#1, Action = 1, Strength = 19.6811
+
+Rule 13: Condition = 0#10##, Action = 0, Strength = 19.6811
+
+Rule 14: Condition = 1#00##, Action = 0, Strength = 17.1604
+
+Rule 15: Condition = 0#####, Action = 1, Strength = 17.1604
+
+Rule 16: Condition = 1#1###, Action = 1, Strength = 19.6811
+
+Rule 17: Condition = 00##01, Action = 1, Strength = 19.6811
+
+Rule 18: Condition = 10####, Action = 1, Strength = 17.1604
+
+Rule 19: Condition = 1#1##0, Action = 0, Strength = 17.1604
+
+Rule 20: Condition = #####1, Action = 1, Strength = 11.2796
+
+Rule 21: Condition = #####1, Action = 0, Strength = 11.2796
+
+Rule 22: Condition = ######, Action = 0, Strength = 13.8003
+
+Rule 23: Condition = 0##0#1, Action = 0, Strength = 13.8003
+
+Rule 24: Condition = 1####1, Action = 1, Strength = 13.8003
+
+Rule 25: Condition = 1##111, Action = 1, Strength = 13.8003
+
+Rule 26: Condition = 1###11, Action = 0, Strength = 19.6811
+
+Rule 27: Condition = 0#00##, Action = 1, Strength = 19.6811
+
+Rule 28: Condition = 011###, Action = 1, Strength = 19.6811
+
+Rule 29: Condition = #01#1#, Action = 1, Strength = 19.6811
+
+Rule 30: Condition = 001#11, Action = 1, Strength = 19.6811
+
+
+Final Accuracy: 53.125%
+
+Run : 3
+
+Final High Strength Rules:
+Condition: 0#00## Action: 0 Strength: 19.6811
+
+Condition: 0#00## Action: 0 Strength: 19.6811
+
+Condition: 0#01## Action: 1 Strength: 19.6811
+
+Condition: 0#00## Action: 0 Strength: 19.6811
+
+Condition: 0##0## Action: 0 Strength: 19.6811
+
+Condition: 0#00## Action: 0 Strength: 19.6811
+
+Condition: 0#0##0 Action: 0 Strength: 19.6811
+
+ALL RULES 
+
+Rule 1: Condition = 0#00##, Action = 0, Strength = 19.6811
+
+Rule 2: Condition = #1#1##, Action = 1, Strength = 18.9925
+
+Rule 3: Condition = 11###0, Action = 0, Strength = 18.402
+
+Rule 4: Condition = 0010##, Action = 1, Strength = 7.2986
+
+Rule 5: Condition = 10#1##, Action = 1, Strength = 7.2986
+
+Rule 6: Condition = #110#0, Action = 1, Strength = 9.69583
+
+Rule 7: Condition = #0#1##, Action = 1, Strength = 9.69583
+
+Rule 8: Condition = 11###0, Action = 0, Strength = 16.1727
+
+Rule 9: Condition = #11###, Action = 0, Strength = 16.1727
+
+Rule 10: Condition = #1###0, Action = 0, Strength = 7.15562
+
+Rule 11: Condition = #111##, Action = 0, Strength = 7.15562
+
+Rule 12: Condition = 11###0, Action = 0, Strength = 12.4162
+
+Rule 13: Condition = ##10##, Action = 0, Strength = 12.4162
+
+Rule 14: Condition = 1###00, Action = 1, Strength = 12.2397
+
+Rule 15: Condition = 1#1###, Action = 0, Strength = 12.2397
+
+Rule 16: Condition = 0#00##, Action = 0, Strength = 19.6811
+
+Rule 17: Condition = 0#01##, Action = 1, Strength = 19.6811
+
+Rule 18: Condition = ###1#0, Action = 1, Strength = 12.7114
+
+Rule 19: Condition = ##001#, Action = 1, Strength = 12.7114
+
+Rule 20: Condition = #1###0, Action = 1, Strength = 16.1727
+
+Rule 21: Condition = 11####, Action = 0, Strength = 16.1727
+
+Rule 22: Condition = 0#00##, Action = 0, Strength = 19.6811
+
+Rule 23: Condition = 0##0##, Action = 0, Strength = 19.6811
+
+Rule 24: Condition = 0#00##, Action = 0, Strength = 19.6811
+
+Rule 25: Condition = 0#0##0, Action = 0, Strength = 19.6811
+
+Rule 26: Condition = #1#1##, Action = 1, Strength = 12.535
+
+Rule 27: Condition = 1010##, Action = 1, Strength = 12.535
+
+Rule 28: Condition = #1#1##, Action = 1, Strength = 12.7114
+
+Rule 29: Condition = ##00##, Action = 1, Strength = 12.7114
+
+Rule 30: Condition = 1000##, Action = 1, Strength = 17.1506
+
+
+Final Accuracy: 62.5%
+
+Run : 4
+
+Final High Strength Rules:
+Condition: #1#1#1 Action: 1 Strength: 19.6811
+
+Condition: #01#1# Action: 1 Strength: 19.6811
+
+Condition: 1###00 Action: 0 Strength: 19.6811
+
+Condition: #010#1 Action: 1 Strength: 19.6811
+
+Condition: #1##1# Action: 1 Strength: 19.6811
+
+Condition: ####00 Action: 0 Strength: 19.6811
+
+Condition: 11#1#1 Action: 1 Strength: 19.6811
+
+Condition: #01#1# Action: 1 Strength: 19.6811
+
+Condition: 101#1# Action: 0 Strength: 19.6811
+
+Condition: 101000 Action: 0 Strength: 19.6811
+
+Condition: #0#### Action: 1 Strength: 19.6811
+
+Condition: #101## Action: 1 Strength: 19.6811
+
+Condition: #1#1## Action: 1 Strength: 19.6811
+
+ALL RULES 
+
+Rule 1: Condition = #1#1#1, Action = 1, Strength = 19.6811
+
+Rule 2: Condition = #01#1#, Action = 1, Strength = 19.6811
+
+Rule 3: Condition = 1###00, Action = 0, Strength = 19.6811
+
+Rule 4: Condition = #010#1, Action = 1, Strength = 19.6811
+
+Rule 5: Condition = #1##1#, Action = 1, Strength = 19.6811
+
+Rule 6: Condition = #0###0, Action = 0, Strength = 14.3219
+
+Rule 7: Condition = #0111#, Action = 1, Strength = 14.3219
+
+Rule 8: Condition = ####00, Action = 0, Strength = 19.6811
+
+Rule 9: Condition = 11#1#1, Action = 1, Strength = 19.6811
+
+Rule 10: Condition = #0##00, Action = 0, Strength = 10.5725
+
+Rule 11: Condition = ####0#, Action = 0, Strength = 10.5725
+
+Rule 12: Condition = 1###1#, Action = 1, Strength = 14.2639
+
+Rule 13: Condition = 1###00, Action = 0, Strength = 14.2639
+
+Rule 14: Condition = #01#1#, Action = 1, Strength = 19.6811
+
+Rule 15: Condition = 101#1#, Action = 0, Strength = 19.6811
+
+Rule 16: Condition = ######, Action = 1, Strength = 14.3501
+
+Rule 17: Condition = #1#101, Action = 0, Strength = 14.3501
+
+Rule 18: Condition = #1##1#, Action = 1, Strength = 0.62375
+
+Rule 19: Condition = 0#01##, Action = 0, Strength = 0.62375
+
+Rule 20: Condition = 101000, Action = 0, Strength = 19.6811
+
+Rule 21: Condition = #0####, Action = 1, Strength = 19.6811
+
+Rule 22: Condition = 1#011#, Action = 1, Strength = 4.69393
+
+Rule 23: Condition = 1####1, Action = 0, Strength = 4.69393
+
+Rule 24: Condition = ####1#, Action = 1, Strength = 9.70967
+
+Rule 25: Condition = 1###0#, Action = 0, Strength = 9.70967
+
+Rule 26: Condition = ####0#, Action = 1, Strength = 15.1268
+
+Rule 27: Condition = #01#1#, Action = 0, Strength = 15.1268
+
+Rule 28: Condition = #101##, Action = 1, Strength = 19.6811
+
+Rule 29: Condition = #1#1##, Action = 1, Strength = 19.6811
+
+Rule 30: Condition = #111##, Action = 0, Strength = 14.3219
+
+
+Final Accuracy: 57.8125%
+
+Run : 5
+
+Final High Strength Rules:
+Condition: 001### Action: 1 Strength: 19.6811
+
+Condition: 1###11 Action: 1 Strength: 19.6811
+
+Condition: 11###0 Action: 0 Strength: 19.6811
+
+Condition: 11##10 Action: 1 Strength: 19.6811
+
+Condition: 1####0 Action: 0 Strength: 19.6811
+
+Condition: 1##110 Action: 0 Strength: 19.6811
+
+Condition: 1####1 Action: 0 Strength: 19.6811
+
+ALL RULES 
+
+Rule 1: Condition = 001###, Action = 1, Strength = 19.6811
+
+Rule 2: Condition = 1###11, Action = 1, Strength = 19.6811
+
+Rule 3: Condition = 11###0, Action = 0, Strength = 19.6811
+
+Rule 4: Condition = 1####0, Action = 1, Strength = 13.0177
+
+Rule 5: Condition = 0####0, Action = 0, Strength = 13.0177
+
+Rule 6: Condition = #01##0, Action = 1, Strength = 16.7254
+
+Rule 7: Condition = 00####, Action = 1, Strength = 16.7254
+
+Rule 8: Condition = 11##10, Action = 1, Strength = 19.6811
+
+Rule 9: Condition = 1####0, Action = 0, Strength = 19.6811
+
+Rule 10: Condition = 10###0, Action = 0, Strength = 16.7254
+
+Rule 11: Condition = 11####, Action = 1, Strength = 16.7254
+
+Rule 12: Condition = 00####, Action = 1, Strength = 15.6391
+
+Rule 13: Condition = 0#1010, Action = 0, Strength = 15.6391
+
+Rule 14: Condition = 0####0, Action = 1, Strength = 6.05101
+
+Rule 15: Condition = 0#1#00, Action = 0, Strength = 6.05101
+
+Rule 16: Condition = 00##11, Action = 0, Strength = 5.60589
+
+Rule 17: Condition = 11#01#, Action = 0, Strength = 5.60589
+
+Rule 18: Condition = 1#10#0, Action = 0, Strength = 10.087
+
+Rule 19: Condition = 10##0#, Action = 0, Strength = 10.087
+
+Rule 20: Condition = 000#11, Action = 0, Strength = 10.6231
+
+Rule 21: Condition = 000#00, Action = 0, Strength = 10.6231
+
+Rule 22: Condition = 0####0, Action = 1, Strength = 10.087
+
+Rule 23: Condition = 1#1011, Action = 1, Strength = 10.087
+
+Rule 24: Condition = #00###, Action = 0, Strength = 11.268
+
+Rule 25: Condition = 0#010#, Action = 0, Strength = 11.268
+
+Rule 26: Condition = 1##110, Action = 0, Strength = 19.6811
+
+Rule 27: Condition = 1####1, Action = 0, Strength = 19.6811
+
+Rule 28: Condition = 000##1, Action = 1, Strength = 15.1521
+
+Rule 29: Condition = 1###1#, Action = 1, Strength = 15.1521
+
+Rule 30: Condition = 010##0, Action = 0, Strength = 9.85973
+
+
+Final Accuracy: 48.4375%
+
+Run : 6
+
+Final High Strength Rules:
+Condition: #1#1#1 Action: 1 Strength: 19.6811
+
+Condition: 0#00## Action: 0 Strength: 19.6811
+
+Condition: 10##1# Action: 1 Strength: 19.5222
+
+Condition: 100### Action: 0 Strength: 19.3394
+
+Condition: ###0## Action: 0 Strength: 19.3394
+
+Condition: #0##1# Action: 1 Strength: 19.26
+
+Condition: 1###0# Action: 0 Strength: 19.26
+
+ALL RULES 
+
+Rule 1: Condition = #1#1#1, Action = 1, Strength = 19.6811
+
+Rule 2: Condition = 0#00##, Action = 0, Strength = 19.6811
+
+Rule 3: Condition = 10##1#, Action = 1, Strength = 19.5222
+
+Rule 4: Condition = 1##0##, Action = 1, Strength = 17.4487
+
+Rule 5: Condition = 10##11, Action = 1, Strength = 17.4487
+
+Rule 6: Condition = ##10##, Action = 0, Strength = 14.669
+
+Rule 7: Condition = 10##1#, Action = 1, Strength = 14.669
+
+Rule 8: Condition = 100#1#, Action = 0, Strength = 10.1186
+
+Rule 9: Condition = 101###, Action = 1, Strength = 10.1186
+
+Rule 10: Condition = 100###, Action = 0, Strength = 19.3394
+
+Rule 11: Condition = ###0##, Action = 0, Strength = 19.3394
+
+Rule 12: Condition = #1#1##, Action = 0, Strength = 15.1874
+
+Rule 13: Condition = 1#0111, Action = 1, Strength = 15.1874
+
+Rule 14: Condition = 10####, Action = 0, Strength = 9.7437
+
+Rule 15: Condition = #00###, Action = 0, Strength = 9.7437
+
+Rule 16: Condition = #0##1#, Action = 1, Strength = 19.26
+
+Rule 17: Condition = 1###0#, Action = 0, Strength = 19.26
+
+Rule 18: Condition = 001###, Action = 1, Strength = 12.9016
+
+Rule 19: Condition = #1111#, Action = 0, Strength = 12.9016
+
+Rule 20: Condition = 0#####, Action = 0, Strength = 14.669
+
+Rule 21: Condition = 11100#, Action = 0, Strength = 14.669
+
+Rule 22: Condition = 0##0##, Action = 1, Strength = 17.5281
+
+Rule 23: Condition = 0#00#1, Action = 0, Strength = 17.5281
+
+Rule 24: Condition = ###0#1, Action = 1, Strength = 10.4181
+
+Rule 25: Condition = 1#1111, Action = 1, Strength = 10.4181
+
+Rule 26: Condition = 0#00##, Action = 1, Strength = 12.3008
+
+Rule 27: Condition = #000##, Action = 0, Strength = 12.3008
+
+Rule 28: Condition = 1#0###, Action = 0, Strength = 13.0329
+
+Rule 29: Condition = #000#1, Action = 1, Strength = 13.0329
+
+Rule 30: Condition = #0##0#, Action = 0, Strength = 9.86689
+
+
+Final Accuracy: 75%
+
+Run : 7
+
+Final High Strength Rules:
+Condition: 1###11 Action: 1 Strength: 19.6811
+
+Condition: 01#0## Action: 0 Strength: 19.6811
+
+Condition: 0#11## Action: 1 Strength: 19.681
+
+Condition: 1#0#1# Action: 1 Strength: 19.6811
+
+Condition: 0#11#1 Action: 0 Strength: 19.6811
+
+ALL RULES 
+
+Rule 1: Condition = 1###11, Action = 1, Strength = 19.6811
+
+Rule 2: Condition = 01#0##, Action = 0, Strength = 19.6811
+
+Rule 3: Condition = 0#11##, Action = 1, Strength = 19.681
+
+Rule 4: Condition = 1###1#, Action = 1, Strength = 10.0386
+
+Rule 5: Condition = 01#011, Action = 0, Strength = 10.0386
+
+Rule 6: Condition = 1#10##, Action = 0, Strength = 10.58
+
+Rule 7: Condition = 1#####, Action = 0, Strength = 10.58
+
+Rule 8: Condition = 1#110#, Action = 0, Strength = 9.43146
+
+Rule 9: Condition = #1#1#0, Action = 0, Strength = 9.43146
+
+Rule 10: Condition = 1#11##, Action = 1, Strength = 15.7939
+
+Rule 11: Condition = 0##000, Action = 0, Strength = 15.7939
+
+Rule 12: Condition = 01#000, Action = 0, Strength = 15.1648
+
+Rule 13: Condition = 1#11##, Action = 0, Strength = 15.1648
+
+Rule 14: Condition = 1#0#1#, Action = 1, Strength = 19.6811
+
+Rule 15: Condition = 0#11#1, Action = 0, Strength = 19.6811
+
+Rule 16: Condition = 1####1, Action = 1, Strength = 13.9478
+
+Rule 17: Condition = #1##1#, Action = 0, Strength = 13.9478
+
+Rule 18: Condition = 1#001#, Action = 1, Strength = 10.1052
+
+Rule 19: Condition = 00#10#, Action = 0, Strength = 10.1052
+
+Rule 20: Condition = 1#1101, Action = 0, Strength = 15.1648
+
+Rule 21: Condition = 10##11, Action = 0, Strength = 15.1648
+
+Rule 22: Condition = 10#0#1, Action = 0, Strength = 7.10414
+
+Rule 23: Condition = 1#####, Action = 1, Strength = 7.10414
+
+Rule 24: Condition = 01#1##, Action = 1, Strength = 9.99208
+
+Rule 25: Condition = #0#0##, Action = 0, Strength = 9.99208
+
+Rule 26: Condition = 1#####, Action = 0, Strength = 7.3451
+
+Rule 27: Condition = 0##1#0, Action = 1, Strength = 7.3451
+
+Rule 28: Condition = 01#1#1, Action = 0, Strength = 15.1648
+
+Rule 29: Condition = 1#1000, Action = 0, Strength = 15.1648
+
+Rule 30: Condition = 11#1##, Action = 0, Strength = 10.58
+
+
+Final Accuracy: 64.0625%
+
+Run : 8
+
+Final High Strength Rules:
+ALL RULES 
+
+Rule 1: Condition = 1###00, Action = 0, Strength = 18.8687
+
+Rule 2: Condition = #00#0#, Action = 0, Strength = 18.8416
+
+Rule 3: Condition = ###1#1, Action = 1, Strength = 16.7308
+
+Rule 4: Condition = ###10#, Action = 1, Strength = 9.23645
+
+Rule 5: Condition = #0####, Action = 1, Strength = 9.23645
+
+Rule 6: Condition = #0##10, Action = 0, Strength = 16.2591
+
+Rule 7: Condition = 1#1###, Action = 1, Strength = 16.2591
+
+Rule 8: Condition = #01010, Action = 0, Strength = 16.2591
+
+Rule 9: Condition = 1###1#, Action = 1, Strength = 16.2591
+
+Rule 10: Condition = ##1111, Action = 0, Strength = 13.2675
+
+Rule 11: Condition = #1####, Action = 0, Strength = 13.2675
+
+Rule 12: Condition = 000#01, Action = 0, Strength = 18.8416
+
+Rule 13: Condition = #10#0#, Action = 0, Strength = 18.8416
+
+Rule 14: Condition = 01##1#, Action = 1, Strength = 11.7268
+
+Rule 15: Condition = #0##1#, Action = 0, Strength = 11.7268
+
+Rule 16: Condition = 1##1##, Action = 0, Strength = 14.6995
+
+Rule 17: Condition = ####00, Action = 0, Strength = 14.6995
+
+Rule 18: Condition = #0##00, Action = 1, Strength = 9.72861
+
+Rule 19: Condition = 10##0#, Action = 0, Strength = 9.72861
+
+Rule 20: Condition = #001##, Action = 0, Strength = 14.6859
+
+Rule 21: Condition = ##0#0#, Action = 0, Strength = 14.6859
+
+Rule 22: Condition = 1#1#0#, Action = 1, Strength = 13.4057
+
+Rule 23: Condition = #0##00, Action = 0, Strength = 13.4057
+
+Rule 24: Condition = ###1#1, Action = 1, Strength = 8.55059
+
+Rule 25: Condition = ###1#1, Action = 1, Strength = 8.55059
+
+Rule 26: Condition = #1##1#, Action = 1, Strength = 12.0898
+
+Rule 27: Condition = ###1##, Action = 1, Strength = 12.0898
+
+Rule 28: Condition = 0#01##, Action = 1, Strength = 13.6305
+
+Rule 29: Condition = 1#01#1, Action = 1, Strength = 13.6305
+
+Rule 30: Condition = 10####, Action = 1, Strength = 7.32661
+
+
+Final Accuracy: 68.75%
+
+Run : 9
+
+Final High Strength Rules:
+Condition: 01#0## Action: 0 Strength: 19.6811
+
+Condition: 01#000 Action: 0 Strength: 19.6811
+
+Condition: 01#1## Action: 0 Strength: 19.6811
+
+ALL RULES 
+
+Rule 1: Condition = 01#0##, Action = 0, Strength = 19.6811
+
+Rule 2: Condition = 0##1##, Action = 1, Strength = 18.4739
+
+Rule 3: Condition = 000###, Action = 0, Strength = 18.4266
+
+Rule 4: Condition = 1#0###, Action = 0, Strength = 15.6724
+
+Rule 5: Condition = 00#0#0, Action = 0, Strength = 15.6724
+
+Rule 6: Condition = #01###, Action = 0, Strength = 14.5569
+
+Rule 7: Condition = 00000#, Action = 0, Strength = 14.5569
+
+Rule 8: Condition = 000##0, Action = 0, Strength = 18.4266
+
+Rule 9: Condition = 0#01#0, Action = 0, Strength = 18.4266
+
+Rule 10: Condition = 1000##, Action = 1, Strength = 14.5806
+
+Rule 11: Condition = 0##1##, Action = 0, Strength = 14.5806
+
+Rule 12: Condition = 1####0, Action = 0, Strength = 8.74313
+
+Rule 13: Condition = #0#0#0, Action = 0, Strength = 8.74313
+
+Rule 14: Condition = 1#11##, Action = 1, Strength = 7.32246
+
+Rule 15: Condition = 1###11, Action = 1, Strength = 7.32246
+
+Rule 16: Condition = 01#1##, Action = 1, Strength = 16.5211
+
+Rule 17: Condition = 1###10, Action = 1, Strength = 16.5211
+
+Rule 18: Condition = 01#000, Action = 0, Strength = 19.6811
+
+Rule 19: Condition = 01#1##, Action = 0, Strength = 19.6811
+
+Rule 20: Condition = 01#10#, Action = 0, Strength = 11.5209
+
+Rule 21: Condition = 0#####, Action = 1, Strength = 11.5209
+
+Rule 22: Condition = 01##1#, Action = 1, Strength = 17.1247
+
+Rule 23: Condition = 1##0#0, Action = 1, Strength = 17.1247
+
+Rule 24: Condition = 0##0#1, Action = 1, Strength = 9.55329
+
+Rule 25: Condition = ##01##, Action = 0, Strength = 9.55329
+
+Rule 26: Condition = #0####, Action = 0, Strength = 5.58414
+
+Rule 27: Condition = 1100##, Action = 0, Strength = 5.58414
+
+Rule 28: Condition = 01#0##, Action = 0, Strength = 12.1245
+
+Rule 29: Condition = #1####, Action = 0, Strength = 12.1245
+
+Rule 30: Condition = 1#####, Action = 0, Strength = 16.4975
+
+
+Final Accuracy: 43.75%
+
+                   
+                   
+Average Accuracy: 57.1875%
+
+Maximum Accuracy: 75%
+
