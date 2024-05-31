@@ -1,4 +1,4 @@
-# Emmanouil Marantidis 
+# Emmanouil Marantidis This is my Thesis from Uni !!
 Title : Implementation of a Classifier System with a fixed number of rules, capable of chain rule activation (reasoning) for application to clustering problems
 
 
