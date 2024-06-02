@@ -269,10 +269,10 @@ Usage:
 
 
 	bool runBucketBrigade(std::vector<Rule>& rules, std::vector<std::pair<std::string, std::string>>& trainingSet, double bidPercentage, double rewardAmount, double negativeRewardFactor, int repeatCount, double taxRate, int maxRules) {
-    		int correctPredictions = 0;
+    	int correctPredictions = 0;
 
-    		while (repeatCount--) {
-        		shuffleTrainingSet(trainingSet);
+    	while (repeatCount--) {
+        	shuffleTrainingSet(trainingSet);
         	for (const auto& ts : trainingSet) {
             		const std::string& input = ts.first;
             		const std::string& expectedOutput = ts.second;
@@ -300,7 +300,7 @@ Usage:
                     			std::uniform_int_distribution<size_t> dist(0, topTiedRules.size() - 1);
                     			bestRule = topTiedRules[dist(rng)];
                 		} else {
-                    			bestRule = matchedRules.front();
+		                    	bestRule = matchedRules.front();
                 		}
             		}
 
@@ -321,16 +321,17 @@ Usage:
                 		if (leastEffectiveRuleIndex != -1) {
                     			rules[leastEffectiveRuleIndex] = generateRuleForSample(input, 10.0, 1);
                 		}
-            			} else {
-                			rules.push_back(generateRuleForSample(input, 10.0, 1));
-            			}
+            		} else {
+                		rules.push_back(generateRuleForSample(input, 10.0, 1));
+            		}
         	}
 
-        		for (auto& rule : rules) {
-            			rule.strength *= (1.0 - taxRate);
-        		}
-    		}
-    		return true;
-	}
+        	for (auto& rule : rules) {
+            		rule.strength *= (1.0 - taxRate);
+        	}
+    	}
+    	return true;
+     	}
+
 
 
