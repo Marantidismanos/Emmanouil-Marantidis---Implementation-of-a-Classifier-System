@@ -8,6 +8,7 @@ Detailed Description of Each Function:
 -------------------------------------------------------------------------------------------------
 
 --> "struct Rule" <--
+---------------------
 
 	struct Rule {
     		std::string condition;
@@ -30,6 +31,7 @@ Components:
 -------------------------------------------------------------------------------------------------
 
 --> "rnd()" <--
+---------------
 
 	double rnd() {
     		std::uniform_real_distribution<double> dist(0.0, 1.0);
@@ -43,6 +45,7 @@ Usage: Used in mutation and selection processes to introduce randomness.
 -------------------------------------------------------------------------------------------------
 
 --> "mutateChar(char currentChar, std::mt19937& rng)" <--
+---------------------------------------------------------
 
 	char mutateChar(char currentChar, std::mt19937& rng) {
     		static const std::map<char, std::vector<char>> alternatives = {
@@ -65,6 +68,7 @@ Usage: Used in the mutate function to alter characters in the condition and acti
 -------------------------------------------------------------------------------------------------
 
 --> "generateRandomRule(int conditionLength, int actionLength)" <--
+-------------------------------------------------------------------
 
 	Rule generateRandomRule(int conditionLength, int actionLength) {
     		std::string condition;
@@ -86,6 +90,7 @@ Usage: Used to initialize the population of rules in the main function.
 -------------------------------------------------------------------------------------------------
 
 --> "mutate(Rule& rule, double mutationRate, std::mt19937& rng)" <--
+--------------------------------------------------------------------
 
 		void mutate(Rule& rule, double mutationRate, std::mt19937& rng) {
     			for (auto& c : rule.condition) {
@@ -107,6 +112,7 @@ Usage: Applied during the genetic algorithm's mutation step.
 -------------------------------------------------------------------------------------------------
 
 --> "rouletteWheelSelection(const std::vector<Rule>& rules)" <--
+----------------------------------------------------------------
 
 		Rule rouletteWheelSelection(const std::vector<Rule>& rules) {
     			double totalStrength = std::accumulate(rules.begin(), rules.end(), 0.0,
@@ -129,6 +135,7 @@ Usage: Used during the selection step of the genetic algorithm.
 -------------------------------------------------------------------------------------------------
 
 --> "multiPointCrossover(Rule& parent1, Rule& parent2)" <--
+-----------------------------------------------------------
 
 		void multiPointCrossover(Rule& parent1, Rule& parent2) {
     			std::string genotype1 = parent1.condition + parent1.action;
