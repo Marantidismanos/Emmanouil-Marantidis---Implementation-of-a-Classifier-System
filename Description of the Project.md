@@ -6,7 +6,7 @@ The code implements a genetic algorithm for rule-based learning, where rules are
 Detailed Description of Each Function:
 -------------------------------------------------------------------------------------------------
 
- ~> "struct Rule" <~
+--> "struct Rule" <--
 
 struct Rule {
     std::string condition;
@@ -24,7 +24,7 @@ Purpose: Represents a rule with a condition, action, and strength.
       
 -------------------------------------------------------------------------------------------------
 
-~> "rnd()" <~
+--> "rnd()" <--
 
 double rnd() {
     std::uniform_real_distribution<double> dist(0.0, 1.0);
@@ -36,7 +36,7 @@ Purpose: Generates a random double between 0.0 and 1.0 using a uniform distribut
     
 -------------------------------------------------------------------------------------------------
 
-~> "mutateChar(char currentChar, std::mt19937& rng)" <~
+--> "mutateChar(char currentChar, std::mt19937& rng)" <--
 
 char mutateChar(char currentChar, std::mt19937& rng) {
     static const std::map<char, std::vector<char>> alternatives = {
@@ -57,7 +57,7 @@ Purpose: Mutates a character by randomly selecting an alternative character.
     
 -------------------------------------------------------------------------------------------------
 
-~> "generateRandomRule(int conditionLength, int actionLength)" <~
+--> "generateRandomRule(int conditionLength, int actionLength)" <--
 
 Rule generateRandomRule(int conditionLength, int actionLength) {
     std::string condition;
@@ -77,7 +77,7 @@ Purpose: Generates a random rule with a specified length for the condition and a
     
 -------------------------------------------------------------------------------------------------
 
-~> "mutate(Rule& rule, double mutationRate, std::mt19937& rng)" <~
+--> "mutate(Rule& rule, double mutationRate, std::mt19937& rng)" <--
 
 void mutate(Rule& rule, double mutationRate, std::mt19937& rng) {
     for (auto& c : rule.condition) {
@@ -97,7 +97,7 @@ Purpose: Mutates the condition and action parts of a rule based on a mutation ra
     
 -------------------------------------------------------------------------------------------------
 
-~> "rouletteWheelSelection(const std::vector<Rule>& rules)" <~
+--> "rouletteWheelSelection(const std::vector<Rule>& rules)" <--
 
 Rule rouletteWheelSelection(const std::vector<Rule>& rules) {
     double totalStrength = std::accumulate(rules.begin(), rules.end(), 0.0,
@@ -118,7 +118,7 @@ Purpose: Selects a rule based on its strength using roulette wheel selection.
 
 -------------------------------------------------------------------------------------------------
 
-~> "multiPointCrossover(Rule& parent1, Rule& parent2)" <~
+--> "multiPointCrossover(Rule& parent1, Rule& parent2)" <--
 
 void multiPointCrossover(Rule& parent1, Rule& parent2) {
     std::string genotype1 = parent1.condition + parent1.action;
