@@ -20,9 +20,11 @@ Purpose: Represents a rule with a condition, action, and strength.
 
 Components:
 		
-  	condition: A string representing the condition part of the rule.
-	action: A string representing the action part of the rule.
-	strength: A double value representing the strength or effectiveness of the rule.
+  condition: A string representing the condition part of the rule.
+  
+  action: A string representing the action part of the rule.
+  
+  strength: A double value representing the strength or effectiveness of the rule.
       
 -------------------------------------------------------------------------------------------------
 
@@ -57,7 +59,7 @@ Usage: Used in mutation and selection processes to introduce randomness.
 
 Purpose: Mutates a character by randomly selecting an alternative character.
 
-	Usage: Used in the mutate function to alter characters in the condition and action strings.
+Usage: Used in the mutate function to alter characters in the condition and action strings.
     
 -------------------------------------------------------------------------------------------------
 
@@ -78,7 +80,7 @@ Purpose: Mutates a character by randomly selecting an alternative character.
 
 Purpose: Generates a random rule with a specified length for the condition and action.
 
-	Usage: Used to initialize the population of rules in the main function.
+Usage: Used to initialize the population of rules in the main function.
     
 -------------------------------------------------------------------------------------------------
 
@@ -99,7 +101,7 @@ Purpose: Generates a random rule with a specified length for the condition and a
 
 Purpose: Mutates the condition and action parts of a rule based on a mutation rate.
 
-	Usage: Applied during the genetic algorithm's mutation step.
+Usage: Applied during the genetic algorithm's mutation step.
     
 -------------------------------------------------------------------------------------------------
 
@@ -121,7 +123,7 @@ Purpose: Mutates the condition and action parts of a rule based on a mutation ra
 
 Purpose: Selects a rule based on its strength using roulette wheel selection.
 
-	Usage: Used during the selection step of the genetic algorithm.
+Usage: Used during the selection step of the genetic algorithm.
 
 -------------------------------------------------------------------------------------------------
 
@@ -146,6 +148,6 @@ Purpose: Selects a rule based on its strength using roulette wheel selection.
 
 Purpose: Performs a multi-point crossover on two parent rules to create offspring.
 
-	Usage: Used during the crossover step of the genetic algorithm.
+Usage: Used during the crossover step of the genetic algorithm.
 
 -------------------------------------------------------------------------------------------------
