@@ -241,3 +241,96 @@ Usage:
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+--> "findIndexOfLeastEffectiveRule(const std::vector<Rule>& rules)" <--
+-----------------------------------------------------------------------
+
+	int findIndexOfLeastEffectiveRule(const std::vector<Rule>& rules) {
+    		double minStrength = std::numeric_limits<double>::max();
+    		int index = -1;
+    		for (int i = 0; i < rules.size(); ++i) {
+        		if (rules[i].strength < minStrength) {
+            			minStrength = rules[i].strength;
+            			index = i;
+        		}
+    		}
+    		return index;
+	}
+
+Purpose: 
+- Finds the index of the rule with the lowest strength.
+Usage:
+- Used in runBucketBrigade to identify and replace the least effective rules.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--> "runBucketBrigade(std::vector<Rule>& rules, std::vector<std::pair<std::string, std::string>>& trainingSet, double bidPercentage, double rewardAmount, double negativeRewardFactor, int repeatCount, double taxRate, int maxRules)" <--
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+'''
+bool runBucketBrigade(std::vector<Rule>& rules, std::vector<std::pair<std::string, std::string>>& trainingSet, double bidPercentage, double rewardAmount, double negativeRewardFactor, int repeatCount, double taxRate, int maxRules) {
+    int correctPredictions = 0;
+
+    while (repeatCount--) {
+        shuffleTrainingSet(trainingSet);
+        for (const auto& ts : trainingSet) {
+            const std::string& input = ts.first;
+            const std::string& expectedOutput = ts.second;
+
+            std::vector<Rule*> matchedRules;
+            for (auto& rule : rules) {
+                if (check_match(input, rule)) {
+                    matchedRules.push_back(&rule);
+                }
+            }
+
+            Rule* bestRule = nullptr;
+            if (!matchedRules.empty()) {
+                std::sort(matchedRules.begin(), matchedRules.end(), [](const Rule* a, const Rule* b) {
+                    return a->strength > b->strength;
+                });
+
+                std::vector<Rule*> topTiedRules;
+                double topStrength = matchedRules.front()->strength;
+                std::copy_if(matchedRules.begin(), matchedRules.end(), std::back_inserter(topTiedRules), [topStrength](const Rule* rule) {
+                    return rule->strength == topStrength;
+                });
+
+                if (topTiedRules.size() > 1) {
+                    std::uniform_int_distribution<size_t> dist(0, topTiedRules.size() - 1);
+                    bestRule = topTiedRules[dist(rng)];
+                } else {
+                    bestRule = matchedRules.front();
+                }
+            }
+
+            if (bestRule) {
+                double bidAmount = bestRule->strength * bidPercentage;
+                bestRule->strength -= bidAmount;
+
+                if (bestRule->action == expectedOutput) {
+                    bestRule->strength += rewardAmount;
+                    correctPredictions++;
+                } else {
+                    double negativeReward = bidAmount * negativeRewardFactor;
+                    bestRule->strength -= negativeReward;
+                    if (bestRule->strength < 0) bestRule->strength = 0;
+                }
+            } else if (rules.size() >= maxRules) {
+                int leastEffectiveRuleIndex = findIndexOfLeastEffectiveRule(rules);
+                if (leastEffectiveRuleIndex != -1) {
+                    rules[leastEffectiveRuleIndex] = generateRuleForSample(input, 10.0, 1);
+                }
+            } else {
+                rules.push_back(generateRuleForSample(input, 10.0, 1));
+            }
+        }
+
+        for (auto& rule : rules) {
+            rule.strength *= (1.0 - taxRate);
+        }
+    }
+    return true;
+}
+'''
+
