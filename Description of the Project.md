@@ -1,4 +1,5 @@
 Overview
+-------------------------------------------------------------------------------------------------
 
 The code implements a genetic algorithm for rule-based learning, where rules are generated, mutated, selected, and evolved over multiple generations to solve a classification problem. The rules are represented by conditions and actions, and their strength indicates their effectiveness. The main steps include rule generation, selection, crossover, mutation, and evaluation.
 
