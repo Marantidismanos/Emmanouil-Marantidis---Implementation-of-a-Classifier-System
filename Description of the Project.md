@@ -20,9 +20,9 @@ Detailed Description of Each Function:
 
 Purpose: Represents a rule with a condition, action, and strength.
 Components:
--condition: A string representing the condition part of the rule.
--action: A string representing the action part of the rule.
--strength: A double value representing the strength or effectiveness of the rule.
+- condition: A string representing the condition part of the rule.
+- action: A string representing the action part of the rule.
+- strength: A double value representing the strength or effectiveness of the rule.
       
 -------------------------------------------------------------------------------------------------
 
