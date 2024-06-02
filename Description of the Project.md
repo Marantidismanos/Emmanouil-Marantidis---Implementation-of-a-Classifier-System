@@ -5,7 +5,7 @@ The code implements a genetic algorithm for rule-based learning, where rules are
 
 
 Detailed Description of Each Function:
--------------------------------------------------------------------------------------------------
+--------------------------------------
 
 --> "struct Rule" <--
 ---------------------
@@ -26,7 +26,7 @@ Components:
 - action: A string representing the action part of the rule.
 - strength: A double value representing the strength or effectiveness of the rule.
       
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --> "rnd()" <--
 ---------------
@@ -42,7 +42,7 @@ Purpose:
 Usage: 
 - Used in mutation and selection processes to introduce randomness.
     
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --> "mutateChar(char currentChar, std::mt19937& rng)" <--
 ---------------------------------------------------------
@@ -67,7 +67,7 @@ Purpose:
 Usage:
 - Used in the mutate function to alter characters in the condition and action strings.
     
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --> "generateRandomRule(int conditionLength, int actionLength)" <--
 -------------------------------------------------------------------
@@ -91,7 +91,7 @@ Purpose:
 Usage:
 - Used to initialize the population of rules in the main function.
     
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --> "mutate(Rule& rule, double mutationRate, std::mt19937& rng)" <--
 --------------------------------------------------------------------
@@ -115,7 +115,7 @@ Purpose:
 Usage:
 - Applied during the genetic algorithm's mutation step.
     
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --> "rouletteWheelSelection(const std::vector<Rule>& rules)" <--
 ----------------------------------------------------------------
@@ -140,7 +140,7 @@ Purpose:
 Usage: 
 - Used during the selection step of the genetic algorithm.
 
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --> "multiPointCrossover(Rule& parent1, Rule& parent2)" <--
 -----------------------------------------------------------
@@ -169,3 +169,75 @@ Usage:
 - Used during the crossover step of the genetic algorithm.
 
 -------------------------------------------------------------------------------------------------
+
+--> "geneticAlgorithm(std::vector<Rule>& rules, double mutationRate, int generation, const std::vector<std::pair<std::string, std::string>>& trainingSet, double elitismRate)" <--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	void geneticAlgorithm(std::vector<Rule>& rules, double mutationRate, int generation, const std::vector<std::pair<std::string, std::string>>& trainingSet, double elitismRate) {
+    		int elitismCount = static_cast<int>(rules.size() * elitismRate);
+    		std::vector<int> eliteIndices = findEliteIndices(rules, elitismCount);
+    		std::vector<Rule> newGeneration;
+    		newGeneration.reserve(rules.size());
+
+    		for (int index : eliteIndices) {
+        		if (index >= 0 && index < rules.size()) {
+            			newGeneration.push_back(rules[index]);
+        		}
+    		}
+
+    		while (newGeneration.size() < rules.size()) {
+        		Rule parent1 = rouletteWheelSelection(rules);
+        		Rule parent2 = rouletteWheelSelection(rules);
+        		multiPointCrossover(parent1, parent2);
+
+        		double averageStrength = (parent1.strength + parent2.strength) / 2.0;
+        		parent1.strength = averageStrength;
+        		parent2.strength = averageStrength;
+
+        		mutate(parent1, mutationRate, rng);
+        		mutate(parent2, mutationRate, rng);
+
+        		newGeneration.push_back(parent1);
+        		if (newGeneration.size() < rules.size()) {
+            			newGeneration.push_back(parent2);
+        		}
+    		}
+
+    		rules.swap(newGeneration);
+	}
+
+ 
+Purpose: 
+- Runs the genetic algorithm for one generation, including selection, crossover, mutation, and elitism.
+Usage:
+- Called repeatedly in the main function to evolve the rules over multiple generations.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--> "generateRuleForSample(const std::string& input, double initialStrength, int actionLength)" <--
+---------------------------------------------------------------------------------------------------
+
+
+	Rule generateRuleForSample(const std::string& input, double initialStrength, int actionLength) {
+    		std::string condition;
+    		std::uniform_int_distribution<int> dist(0, 2);
+    		for (char c : input) {
+        		int decision = dist(rng);
+       	 		condition += (decision < 2) ? c : '#';
+    		}
+
+    		std::string action;
+    		std::uniform_int_distribution<int> actionDist(0, 1);
+    		for (int i = 0; i < actionLength; ++i) {
+       		 	action += (actionDist(rng) == 0) ? '0' : '1';
+    		}
+
+    		return Rule(condition, action, initialStrength);
+	}
+
+Purpose: 
+- Generates a new rule for a given input sample.
+Usage:
+- Used in runBucketBrigade to generate new rules when needed.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
