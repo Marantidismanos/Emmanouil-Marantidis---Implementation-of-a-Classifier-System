@@ -392,16 +392,16 @@ Usage:
     int main() {
     srand(static_cast<unsigned>(time(0)));
 
-    int populationSize = 30, maxRules = 60, maxGenerations = 12000;
+    int populationSize = 45, maxRules = 60, maxGenerations = 30000;
     double mutationRate = 0.10;
     double bidPercentage = 0.05;
     double rewardAmount = 2.0;
     int repeatCount = 20;
     double taxRate = 0.10;
 
-    double negativeRewardFactor = 1.00;
+    double negativeRewardFactor = 1.25;
     double strengthThreshold = 25;
-    double elitismRate = 0.2;
+    double elitismRate = 0.25;
 
     int conditionLength = 6;
     int actionLength = 1;
