@@ -524,6 +524,7 @@ Usage:
 
 Purpose: 
 - The main function initializes parameters, generates initial rules, runs the genetic algorithm over multiple generations, evaluates the results, and writes the final rules and accuracies to a file.
+
 Steps:
 - Initialize parameters and the training set.
 - Generate the initial population of rules.
