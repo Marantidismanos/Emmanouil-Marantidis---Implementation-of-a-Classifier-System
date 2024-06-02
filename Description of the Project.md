@@ -334,4 +334,199 @@ Usage:
      	}
 
 
+Purpose: 
+- Implements the bucket brigade algorithm to evaluate and update the strength of rules based on their performance on the training set.
+Usage:
+- Called in the main function to perform rule evaluation and updating.
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--> "predictOutput(const std::vector<Rule>& rules, const std::string& input)" <--
+---------------------------------------------------------------------------------
+
+	std::string predictOutput(const std::vector<Rule>& rules, const std::string& input) {
+    		std::vector<const Rule*> matchedRules;
+
+    		for (const auto& rule : rules) {
+        		if (std::equal(rule.condition.begin(), rule.condition.end(), input.begin(),
+            		[](char r, char i) { return r == '#' || r == i; })) {
+           		 	matchedRules.push_back(&rule);
+        		}
+    		}
+
+    		if (matchedRules.empty()) {
+        		return "";
+    		}
+
+    		std::sort(matchedRules.begin(), matchedRules.end(), [](const Rule* a, const Rule* b) {
+        		return a->strength > b->strength;
+    		});
+
+    		std::vector<const Rule*> topTiedRules;
+    		double topStrength = matchedRules.front()->strength;
+    		std::copy_if(matchedRules.begin(), matchedRules.end(), std::back_inserter(topTiedRules), [topStrength](const Rule* rule) {
+        		return rule->strength == topStrength;
+    		});
+
+    		static std::mt19937 rng(std::random_device{}());
+    		if (topTiedRules.size() > 1) {
+        		std::uniform_int_distribution<size_t> dist(0, topTiedRules.size() - 1);
+        		return topTiedRules[dist(rng)]->action;
+    		}
+
+    		return matchedRules.front()->action;
+	}
+
+
+Purpose: 
+- Predicts the output for a given input based on the rules, considering the strength of matching rules.
+Usage:
+- Used to evaluate the accuracy of the evolved rules on the training set.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-->"main()"<--
+--------------
+
+    int main() {
+    srand(static_cast<unsigned>(time(0)));
+
+    int populationSize = 30, maxRules = 60, maxGenerations = 12000;
+    double mutationRate = 0.10;
+    double bidPercentage = 0.05;
+    double rewardAmount = 2.0;
+    int repeatCount = 20;
+    double taxRate = 0.10;
+
+    double negativeRewardFactor = 1.00;
+    double strengthThreshold = 25;
+    double elitismRate = 0.2;
+
+    int conditionLength = 6;
+    int actionLength = 1;
+
+    std::vector<std::pair<std::string, std::string>> trainingSet = {
+        {"000000", "0"}, {"000001", "0"}, {"000010", "0"}, {"000011", "0"},
+        {"000100", "0"}, {"000101", "0"}, {"000110", "0"}, {"000111", "0"},
+        {"001000", "1"}, {"001001", "1"}, {"001010", "1"}, {"001011", "1"},
+        {"001100", "1"}, {"001101", "1"}, {"001110", "1"}, {"001111", "1"},
+
+        {"010000", "0"}, {"010001", "0"}, {"010010", "0"}, {"010011", "0"},
+        {"010100", "1"}, {"010101", "1"}, {"010110", "1"}, {"010111", "1"},
+        {"011000", "0"}, {"011001", "0"}, {"011010", "0"}, {"011011", "0"},
+        {"011100", "1"}, {"011101", "1"}, {"011110", "1"}, {"011111", "1"},
+
+        {"100000", "0"}, {"100001", "0"}, {"100010", "1"}, {"100011", "1"},
+        {"100100", "0"}, {"100101", "0"}, {"100110", "1"}, {"100111", "1"},
+        {"101000", "0"}, {"101001", "0"}, {"101010", "1"}, {"101011", "1"},
+        {"101100", "0"}, {"101101", "0"}, {"101110", "1"}, {"101111", "1"},
+
+        {"110000", "0"}, {"110001", "1"}, {"110010", "0"}, {"110011", "1"},
+        {"110100", "0"}, {"110101", "1"}, {"110110", "0"}, {"110111", "1"},
+        {"111000", "0"}, {"111001", "1"}, {"111010", "0"}, {"111011", "1"},
+        {"111100", "0"}, {"111101", "1"}, {"111110", "0"}, {"111111", "1"},
+    };
+
+    std::vector<Rule> rules;
+    rules.reserve(maxRules);
+    for (int i = 0; i < populationSize; ++i) {
+        rules.push_back(generateRandomRule(conditionLength, actionLength));
+    }
+
+    std::vector<double> accuracies(10);
+
+    std::time_t now = std::time(nullptr);
+    std::tm timeStruct = {};
+
+    char buffer[80];
+    localtime_s(&timeStruct, &now);
+    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d_%H-%M-%S", &timeStruct);
+    std::string filename = "final_results_" + std::string(buffer) + ".txt";
+
+    std::ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        std::cerr << "Failed to open file: " << filename << "\n";
+        return 1;
+    }
+
+    outFile << "Parameters : \n" << std::endl;
+    outFile << "PopulationSize = " << populationSize << "\n" << std::endl;
+    outFile << "MaxRules = " << maxRules << "\n" << std::endl;
+    outFile << "MaxGenerations = " << maxGenerations << "\n" << std::endl;
+    outFile << "MutationRate = " << mutationRate << "\n" << std::endl;
+    outFile << "BidPercentage = " << bidPercentage << "\n" << std::endl;
+    outFile << "RewardAmount = " << rewardAmount << "\n" << std::endl;
+    outFile << "RepeatCount = " << repeatCount << "\n" << std::endl;
+    outFile << "TaxRate = " << taxRate << "\n" << std::endl;
+    outFile << "NegativeRewardFactor = " << negativeRewardFactor << "\n" << std::endl;
+    outFile << "StrengthThreshold = " << strengthThreshold << "\n" << std::endl;
+    outFile << "Elitism rate = " << elitismRate << "\n" << std::endl;
+    outFile << "                   \n" << std::endl;
+    outFile << "Final Rules:\n" << std::endl;
+    outFile << "                   \n" << std::endl;
+
+    for (int runcounter = 0; runcounter < 10; ++runcounter) {
+        outFile << "Run : " << runcounter << "\n" << std::endl;
+        for (int gen = 0; gen < maxGenerations; ++gen) {
+            runBucketBrigade(rules, trainingSet, bidPercentage, rewardAmount, negativeRewardFactor, repeatCount, taxRate, maxRules);
+            geneticAlgorithm(rules, mutationRate, gen, trainingSet, elitismRate);
+        }
+
+        std::vector<Rule> highStrengthRules;
+        std::copy_if(rules.begin(), rules.end(), std::back_inserter(highStrengthRules), [strengthThreshold](const Rule& rule) {
+            return rule.strength > strengthThreshold;
+        });
+
+        int correctPredictions = 0;
+        for (const auto& ts : trainingSet) {
+            if (predictOutput(rules, ts.first) == ts.second) {
+                correctPredictions++;
+            }
+        }
+
+        double accuracy = static_cast<double>(correctPredictions) / trainingSet.size() * 100.0;
+        accuracies[runcounter] = accuracy;
+
+        outFile << "Final High Strength Rules:\n";
+        std::cout << "Final High Strength Rules:\n";
+        for (const auto& rule : highStrengthRules) {
+            outFile << "Condition: " << rule.condition << " Action: " << rule.action << " Strength: " << rule.strength << "\n" << std::endl;
+            std::cout << "Condition: " << rule.condition << " Action: " << rule.action << " Strength: " << rule.strength << "\n";
+        }
+
+        outFile << "ALL RULES " << "\n" << std::endl;
+        for (int i = 0; i < rules.size(); ++i) {
+            outFile << "Rule " << i + 1 << ": Condition = " << rules[i].condition
+                    << ", Action = " << rules[i].action
+                    << ", Strength = " << rules[i].strength << "\n" << std::endl;
+        }
+        std::cout << "Final Accuracy: " << accuracy << "%\n";
+        outFile << "\nFinal Accuracy: " << accuracy << "%\n" << std::endl;
+        std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n";
+    }
+
+    double averageAccuracy = std::accumulate(accuracies.begin(), accuracies.end(), 0.0) / accuracies.size();
+    double maxAccuracy = *std::max_element(accuracies.begin(), accuracies.end());
+    outFile << "                   \n";
+    outFile << "                   \n";
+    outFile << "Average Accuracy: " << averageAccuracy << "%\n" << std::endl;
+    outFile << "Maximum Accuracy: " << maxAccuracy << "%\n" << std::endl;
+
+    outFile.close();
+    if (outFile.fail()) {
+        std::cerr << "Error occurred during file operation on: " << filename << "\n";
+        return 1;
+    }
+
+    return 0;
+    }
+
+Purpose: 
+- The main function initializes parameters, generates initial rules, runs the genetic algorithm over multiple generations, evaluates the results, and writes the final rules and accuracies to a file.
+Steps:
+- Initialize parameters and the training set.
+- Generate the initial population of rules.
+- Open a file to write results.
+- Run the genetic algorithm and bucket brigade algorithm for a specified number of runs and generations.
+- Evaluate the rules and write the results to the file.
