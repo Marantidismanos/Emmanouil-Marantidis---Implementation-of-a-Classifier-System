@@ -20,6 +20,7 @@ Detailed Description of Each Function:
 
 Purpose: 
 - Represents a rule with a condition, action, and strength.
+
 Components:
 - condition: A string representing the condition part of the rule.
 - action: A string representing the action part of the rule.
