@@ -18,7 +18,8 @@ Detailed Description of Each Function:
         		: condition(condition), action(action), strength(strength) {}
 	};
 
-Purpose: Represents a rule with a condition, action, and strength.
+Purpose: 
+- Represents a rule with a condition, action, and strength.
 Components:
 - condition: A string representing the condition part of the rule.
 - action: A string representing the action part of the rule.
