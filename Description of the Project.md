@@ -1,7 +1,13 @@
 Overview
 -------------------------------------------------------------------------------------------------
+Title and Purpose
+-----------------
 
-The code implements a genetic algorithm for rule-based learning, where rules are generated, mutated, selected, and evolved over multiple generations to solve a classification problem. The rules are represented by conditions and actions, and their strength indicates their effectiveness. The main steps include rule generation, selection, crossover, mutation, and evaluation.
+Title:
+- Implementation of a Classifier System with a fixed number of rules, capable of chain rule activation (reasoning) for application to clustering problems
+
+Purpose: 
+- Develop a Classifier System (CS) with genetically evolved sets of rules to simulate desired input-output behavior, applied to a classification problem.
 
 
 Detailed Description of Each Function:
