@@ -8,23 +8,21 @@ Detailed Description of Each Function:
 
 --> "struct Rule" <--
 
-struct Rule {
-    std::string condition;
-    std::string action;
-    double strength;
-    Rule(const std::string& condition, const std::string& action, double strength)
-        : condition(condition), action(action), strength(strength) {}
-};
+	struct Rule {
+    		std::string condition;
+    		std::string action;
+    		double strength;
+    		Rule(const std::string& condition, const std::string& action, double strength)
+        		: condition(condition), action(action), strength(strength) {}
+	};
 
-Purpose: Represents a rule with a condition, action, and strength.
+	Purpose: Represents a rule with a condition, action, and strength.
 
-Components:
+	Components:
 
-	condition: A string representing the condition part of the rule.
-
-	action: A string representing the action part of the rule.
-
-	strength: A double value representing the strength or effectiveness of the rule.
+		condition: A string representing the condition part of the rule.
+		action: A string representing the action part of the rule.
+		strength: A double value representing the strength or effectiveness of the rule.
       
 -------------------------------------------------------------------------------------------------
 
