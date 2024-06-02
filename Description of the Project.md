@@ -13,7 +13,7 @@ Key Components in Your Code
 ---------------------------
 
 - Population of solutions (rules):
-  - Your std::vector<Rule> represents the population of rules, where each rule has a condition, action, and strength.
+  - The std::vector<Rule> represents the population of rules, where each rule has a condition, action, and strength.
 
 - Parent selection method (Roulette wheel):
   - The rouletteWheelSelection function implements the roulette wheel selection method to choose parents based on their strength.
@@ -24,63 +24,67 @@ Key Components in Your Code
 - Mutation operator (Mutation):
   - The mutate function applies mutations to the condition and action parts of a rule with a specified mutation rate.
 
-Elitism:
-The findEliteIndices and geneticAlgorithm functions ensure that the best-performing rules (elites) are carried over to the next generation without modification.
+- Elitism:
+  - The findEliteIndices and geneticAlgorithm functions ensure that the best-performing rules (elites) are carried over to the next generation without modification.
 
-Variable termination criteria:
-Your code terminates after a fixed number of generations (maxGenerations). This could be modified to include other termination criteria if needed.
+- Variable termination criteria:
+  - The code terminates after a fixed number of generations (maxGenerations). 
 
-User-defined parameters:
-Parameters such as populationSize, maxRules, maxGenerations, mutationRate, bidPercentage, rewardAmount, repeatCount, taxRate, negativeRewardFactor, strengthThreshold, and elitismRate are defined and can be adjusted by the user.
+- User-defined parameters:
+  - Parameters such as populationSize, maxRules, maxGenerations, mutationRate, bidPercentage, rewardAmount, repeatCount, taxRate, negativeRewardFactor, strengthThreshold, and elitismRate are defined and can be adjusted by the user.
 
-How Your Code Maps to the Description
 
-    Classifier System (CS) with fixed set of rules:
-        The rules are stored in a fixed-size vector std::vector<Rule> rules.
+How The Code Maps to the Description
+------------------------------------
 
-    Genetic Evolution of Rule Sets:
-        Implemented through functions like geneticAlgorithm, mutate, multiPointCrossover, and rouletteWheelSelection.
+- Classifier System (CS) with fixed set of rules:
+  - The rules are stored in a fixed-size vector std::vector<Rule> rules.
 
-    Bucket Brigade Algorithm:
-        The runBucketBrigade function implements the bucket brigade algorithm to evaluate and update the strength of rules based on their performance.
+- Genetic Evolution of Rule Sets:
+  - Implemented through functions like geneticAlgorithm, mutate, multiPointCrossover, and rouletteWheelSelection.
 
-    Application to Classification Problem:
-        The training set std::vector<std::pair<std::string, std::string>> trainingSet and the function predictOutput are used to apply the evolved rules to a classification problem.
+- Bucket Brigade Algorithm:
+  - The runBucketBrigade function implements the bucket brigade algorithm to evaluate and update the strength of rules based on their performance.
 
-    User-defined Parameters:
-        Your code allows for various user-defined parameters to be set and adjusted, impacting the behavior and effectiveness of the classifier system.
+- Application to Classification Problem:
+  - The training set std::vector<std::pair<std::string, std::string>> trainingSet and the function predictOutput are used to apply the evolved rules to a classification problem.
+
+- User-defined Parameters:
+  - The code allows for various user-defined parameters to be set and adjusted, impacting the behavior and effectiveness of the classifier system.
+
 
 Detailed Mapping
+----------------
 
-    Initialization:
-        std::vector<Rule> rules initialized in the main function.
+	Initialization:
+		std::vector<Rule> rules initialized in the main function.
 
-    Rule Generation:
-        generateRandomRule function generates initial rules.
+	Rule Generation:
+		generateRandomRule function generates initial rules.
 
-    Selection:
-        rouletteWheelSelection function selects parents based on rule strength.
+	Selection:
+		rouletteWheelSelection function selects parents based on rule strength.
 
-    Crossover:
-        multiPointCrossover function combines parts of two parent rules to produce offspring.
+	Crossover:
+		multiPointCrossover function combines parts of two parent rules to produce offspring.
 
-    Mutation:
-        mutate function introduces random changes to rules.
+	Mutation:
+		mutate function introduces random changes to rules.
 
-    Elitism:
-        findEliteIndices identifies the strongest rules to carry over.
+	Elitism:
+		findEliteIndices identifies the strongest rules to carry over.
 
-    Rule Evaluation:
-        runBucketBrigade evaluates rule performance and updates strengths using a bucket brigade algorithm.
+	Rule Evaluation:
+		runBucketBrigade evaluates rule performance and updates strengths using a bucket brigade algorithm.
 
-    Training and Prediction:
-        trainSet provides input-output pairs for training.
-        predictOutput uses the evolved rules to predict outputs for given inputs.
+	Training and Prediction:
+		trainingSet provides input-output pairs for training.
+		predictOutput uses the evolved rules to predict outputs for given inputs.
 
-    User-defined Parameters:
-        Parameters such as populationSize, maxRules, mutationRate, etc., are defined and can be adjusted.
+	User-defined Parameters:
+		Parameters such as populationSize, maxRules, mutationRate, etc., are defined and can be adjusted.
 
-In summary, your code is a good implementation of a classifier system with a genetic algorithm and a bucket brigade algorithm, fulfilling the requirements mentioned in the description. It includes all the necessary components for evolving rules, selecting parents, performing crossover and mutation, ensuring elitism, and applying the system to a classification problem.
+In summary, the code is a good implementation of a classifier system with a genetic algorithm and a bucket brigade algorithm, fulfilling the requirements mentioned in the description. It includes all the necessary components for evolving rules, selecting parents, performing crossover and mutation, ensuring elitism, and applying the system to a classification problem.
 
 Detailed Description of Each Function:
 --------------------------------------
