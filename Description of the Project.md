@@ -17,10 +17,12 @@ struct Rule {
 };
 
 Purpose: Represents a rule with a condition, action, and strength.
+
 Components:
-      condition: A string representing the condition part of the rule.
-      action: A string representing the action part of the rule.
-      strength: A double value representing the strength or effectiveness of the rule.
+
+condition: A string representing the condition part of the rule.
+action: A string representing the action part of the rule.
+strength: A double value representing the strength or effectiveness of the rule.
       
 -------------------------------------------------------------------------------------------------
 
@@ -32,7 +34,8 @@ double rnd() {
 }
 
 Purpose: Generates a random double between 0.0 and 1.0 using a uniform distribution.
-    Usage: Used in mutation and selection processes to introduce randomness.
+
+Usage: Used in mutation and selection processes to introduce randomness.
     
 -------------------------------------------------------------------------------------------------
 
@@ -53,7 +56,8 @@ char mutateChar(char currentChar, std::mt19937& rng) {
 }
 
 Purpose: Mutates a character by randomly selecting an alternative character.
-    Usage: Used in the mutate function to alter characters in the condition and action strings.
+
+Usage: Used in the mutate function to alter characters in the condition and action strings.
     
 -------------------------------------------------------------------------------------------------
 
@@ -73,7 +77,8 @@ Rule generateRandomRule(int conditionLength, int actionLength) {
 }
 
 Purpose: Generates a random rule with a specified length for the condition and action.
-    Usage: Used to initialize the population of rules in the main function.
+
+Usage: Used to initialize the population of rules in the main function.
     
 -------------------------------------------------------------------------------------------------
 
@@ -93,7 +98,8 @@ void mutate(Rule& rule, double mutationRate, std::mt19937& rng) {
 }
 
 Purpose: Mutates the condition and action parts of a rule based on a mutation rate.
-    Usage: Applied during the genetic algorithm's mutation step.
+
+Usage: Applied during the genetic algorithm's mutation step.
     
 -------------------------------------------------------------------------------------------------
 
@@ -114,7 +120,8 @@ Rule rouletteWheelSelection(const std::vector<Rule>& rules) {
 }
 
 Purpose: Selects a rule based on its strength using roulette wheel selection.
-    Usage: Used during the selection step of the genetic algorithm.
+
+Usage: Used during the selection step of the genetic algorithm.
 
 -------------------------------------------------------------------------------------------------
 
@@ -138,6 +145,7 @@ void multiPointCrossover(Rule& parent1, Rule& parent2) {
 }
 
 Purpose: Performs a multi-point crossover on two parent rules to create offspring.
-    Usage: Used during the crossover step of the genetic algorithm.
+
+Usage: Used during the crossover step of the genetic algorithm.
 
 -------------------------------------------------------------------------------------------------
