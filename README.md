@@ -500,6 +500,29 @@ Usage:
     int conditionLength = 6;
     int actionLength = 1;
 
+    // Set precision for floating-point numbers
+    std::cout << std::fixed << std::setprecision(2);
+
+    // Print the table header
+    std::cout << std::setw(30) << "Parameter" << std::setw(15) << "Value" << std::endl;
+    std::cout << std::string(45, '-') << std::endl;
+
+    // Print the parameters in a tabular format
+    std::cout << std::setw(30) << "Population Size" << std::setw(15) << populationSize << std::endl;
+    std::cout << std::setw(30) << "Max Rules" << std::setw(15) << maxRules << std::endl;
+    std::cout << std::setw(30) << "Max Generations" << std::setw(15) << maxGenerations << std::endl;
+    std::cout << std::setw(30) << "Mutation Rate" << std::setw(15) << mutationRate << std::endl;
+    std::cout << std::setw(30) << "Bid Percentage" << std::setw(15) << bidPercentage << std::endl;
+    std::cout << std::setw(30) << "Reward Amount" << std::setw(15) << rewardAmount << std::endl;
+    std::cout << std::setw(30) << "Repeat Count" << std::setw(15) << repeatCount << std::endl;
+    std::cout << std::setw(30) << "Tax Rate" << std::setw(15) << taxRate << std::endl;
+    std::cout << std::setw(30) << "Negative Reward Factor" << std::setw(15) << negativeRewardFactor << std::endl;
+    std::cout << std::setw(30) << "Strength Threshold" << std::setw(15) << strengthThreshold << std::endl;
+    std::cout << std::setw(30) << "Elitism Rate" << std::setw(15) << elitismRate << std::endl;
+    std::cout << std::setw(30) << "Condition Length" << std::setw(15) << conditionLength << std::endl;
+    std::cout << std::setw(30) << "Action Length" << std::setw(15) << actionLength << std::endl;
+
+    std::cout << std::string(45, '-') << std::endl;
     std::vector<std::pair<std::string, std::string>> trainingSet = {
         {"000000", "0"}, {"000001", "0"}, {"000010", "0"}, {"000011", "0"},
         {"000100", "0"}, {"000101", "0"}, {"000110", "0"}, {"000111", "0"},
@@ -544,21 +567,29 @@ Usage:
         return 1;
     }
 
-    outFile << "Parameters : \n" << std::endl;
-    outFile << "PopulationSize = " << populationSize << "\n" << std::endl;
-    outFile << "MaxRules = " << maxRules << "\n" << std::endl;
-    outFile << "MaxGenerations = " << maxGenerations << "\n" << std::endl;
-    outFile << "MutationRate = " << mutationRate << "\n" << std::endl;
-    outFile << "BidPercentage = " << bidPercentage << "\n" << std::endl;
-    outFile << "RewardAmount = " << rewardAmount << "\n" << std::endl;
-    outFile << "RepeatCount = " << repeatCount << "\n" << std::endl;
-    outFile << "TaxRate = " << taxRate << "\n" << std::endl;
-    outFile << "NegativeRewardFactor = " << negativeRewardFactor << "\n" << std::endl;
-    outFile << "StrengthThreshold = " << strengthThreshold << "\n" << std::endl;
-    outFile << "Elitism rate = " << elitismRate << "\n" << std::endl;
-    outFile << "                   \n" << std::endl;
-    outFile << "Final Rules:\n" << std::endl;
-    outFile << "                   \n" << std::endl;
+    // Set precision for floating-point numbers
+    std::cout << std::fixed << std::setprecision(2);
+
+    // Print the table header
+    outFile << std::setw(30) << "Parameter" << std::setw(15) << "Value" << std::endl;
+    outFile << std::string(45, '-') << std::endl;
+
+    // Print the parameters in a tabular format
+    outFile << std::setw(30) << "Population Size" << std::setw(15) << populationSize << std::endl;
+    outFile << std::setw(30) << "Max Rules" << std::setw(15) << maxRules << std::endl;
+    outFile << std::setw(30) << "Max Generations" << std::setw(15) << maxGenerations << std::endl;
+    outFile << std::setw(30) << "Mutation Rate" << std::setw(15) << mutationRate << std::endl;
+    outFile << std::setw(30) << "Bid Percentage" << std::setw(15) << bidPercentage << std::endl;
+    outFile << std::setw(30) << "Reward Amount" << std::setw(15) << rewardAmount << std::endl;
+    outFile << std::setw(30) << "Repeat Count" << std::setw(15) << repeatCount << std::endl;
+    outFile << std::setw(30) << "Tax Rate" << std::setw(15) << taxRate << std::endl;
+    outFile << std::setw(30) << "Negative Reward Factor" << std::setw(15) << negativeRewardFactor << std::endl;
+    outFile << std::setw(30) << "Strength Threshold" << std::setw(15) << strengthThreshold << std::endl;
+    outFile << std::setw(30) << "Elitism Rate" << std::setw(15) << elitismRate << std::endl;
+    outFile << std::setw(30) << "Condition Length" << std::setw(15) << conditionLength << std::endl;
+    outFile << std::setw(30) << "Action Length" << std::setw(15) << actionLength << std::endl;
+
+    outFile << std::string(45, '-') << std::endl;
 
     for (int runcounter = 0; runcounter < 10; ++runcounter) {
         outFile << "Run : " << runcounter << "\n" << std::endl;
