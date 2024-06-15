@@ -350,7 +350,7 @@ std::string predictOutput(const std::vector<Rule>& rules, const std::string& inp
 int main() {
 	srand(static_cast<unsigned>(time(0)));
 
-	int populationSize = 45, maxRules = 60, maxGenerations = 16000;
+	int populationSize = 45, maxRules = 60, maxGenerations = 30000;
 	double mutationRate = 0.01;
 	double bidPercentage = 0.05;
 	double rewardAmount = 2.0; // This Parameter gives a Reward to the Rules if they are correct .
@@ -463,7 +463,7 @@ int main() {
 
 	outFile << std::string(45, '-') << std::endl;
 
-	for (int runcounter = 0; runcounter < 10; ++runcounter)
+	for (int runcounter = 0; runcounter < 2; ++runcounter)
 	{
 		std::cout << "Run : " << runcounter << "\n" << std::endl;
 		outFile << "Run : " << runcounter << "\n" << std::endl;
